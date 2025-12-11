@@ -1,8 +1,15 @@
+using ASPNETMVCFreeCodeCamp.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // C(Course): Allows app to handle HTTP requests and render HTML views
 builder.Services.AddControllersWithViews();
+
+//
+builder.Services.AddDbContext<MVCAppContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 // Compiles the app
 var app = builder.Build();

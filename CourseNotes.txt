@@ -16,5 +16,13 @@ C) Action Parameters
 		- Url segments defined in routes, ex: /Home/Index/{id?} route for "id" input. Input arg name MUST MATCH.
 		- Query strings such as in GET requests
 		- Form submissions
-	
+
+D) Entity Framework (Separate package)
+	Video also uses EntityFrameworkCore.Tools
+	NOTE: Since i don't have SQL Server installed, using PostgreSQL instead since i already have this installed
+	Interacting with database using dotnet objects, queries using c#
+	a) Code First
+		Define db with c# code
+		
+	b) Database First
 	
