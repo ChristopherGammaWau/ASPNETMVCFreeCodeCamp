@@ -1,9 +1,8 @@
-File Structure:
+A)File Structure:
 1. (Root)\Program.cs: Entry point to app.
 2. 	
 
-Interfaces/Classes:
-1. IActionResult: Interface encompassing result classes from actions done by the app. Could be formatted data or data indicating actions to take.
+B)IActionResult: Interface encompassing result classes from actions done by the app. Could be formatted data or data indicating actions to take.
 	EX:
 		- ViewResult: Returns an HTML view
 		- JsonResult: Return JSON data
@@ -11,3 +10,11 @@ Interfaces/Classes:
 		- RedirectResult: Return response to redirect to URL
 		- RedirectToActionResult: Redirect to another ActionResult
 		- StatusCodeResult: Return response with given HTTP status code
+		
+C) Action Parameters
+	How actions (Methods defined in controllers) receive input. Can come from sources such as:
+		- Url segments defined in routes, ex: /Home/Index/{id?} route for "id" input. Input arg name MUST MATCH.
+		- Query strings such as in GET requests
+		- Form submissions
+	
+	

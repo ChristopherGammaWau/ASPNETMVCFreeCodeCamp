@@ -11,4 +11,10 @@ public class ItemsController : Controller
         ItemModel item = new ItemModel() {Name = "TestItem1"};
         return View(item);
     }
+    
+    // Input: Url Segments
+    public IActionResult Edit(int id)
+    {
+        return Content("id is " + id);
+    }
 }
