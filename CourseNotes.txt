@@ -1,3 +1,4 @@
+NOTE: MVC Template from Microsoft COMES WITH BOOTSTRAP CSS LIBRARY
 A)File Structure:
 1. (Root)\Program.cs: Entry point to app.
 2. 	
@@ -24,5 +25,22 @@ D) Entity Framework (Separate package)
 	a) Code First
 		Define db with c# code
 		
-	b) Database First
+	b) Database First (Scaffold)
+		Auto-generate models from existing db schema
+		
+	Commands used during setup:
+	- dotnet new tool-manifest: Setup list of tools LOCAL to project (not solution)
+	- dotnet tool install dotnet-ef: Command line tools for EntityFrameworkCore
+	- dotnet ef migrations add *Name*: Add migration
+	- dotnet ef database update: Run migrations
+	- dotnet ef dbcontext scaffold *Database Connection String* *Database provider name*: Scaffold/Reverse engineer db schema found on said connection
 	
+	c) Use async + Task return type for db operations
+	
+	d) Razor:
+		@model: Data to pass to view from controller, strongly typed
+		ViewData: Dict containing data, loosely typed
+
+	e) Anchor tag helper with Razor: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper
+	
+	f) Model binding, to automatically bind values to a newly created Model instance as an argument to a controller's method
