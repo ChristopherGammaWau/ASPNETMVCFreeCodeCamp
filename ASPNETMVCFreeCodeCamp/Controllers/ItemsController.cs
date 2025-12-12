@@ -46,8 +46,30 @@ public class ItemsController : Controller
     }
     
     // Input: Url Segments
-    public IActionResult Edit(int id)
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
     {
-        return Content("id is " + id);
+        ItemModel? item = await _context.Items.FirstOrDefaultAsync(item => item.Id == id);
+        // Check is null
+        if (item != null)
+        {
+            return View(item);
+        }
+        else
+        {
+            return StatusCode(404, "Item not found");
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit([Bind("Id, Name, Price")] ItemModel item)
+    {
+        if (ModelState.IsValid)
+        {
+            _context.Update(item);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(item);
     }
 }

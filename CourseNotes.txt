@@ -42,5 +42,6 @@ D) Entity Framework (Separate package)
 		ViewData: Dict containing data, loosely typed
 
 	e) Anchor tag helper with Razor: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper
+	NOTE: asp-for AUTOMATICALLY add's existing model's value to input elements
 	
 	f) Model binding, to automatically bind values to a newly created Model instance as an argument to a controller's method
