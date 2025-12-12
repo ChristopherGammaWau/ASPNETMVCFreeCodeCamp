@@ -72,4 +72,37 @@ public class ItemsController : Controller
         }
         return View(item);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        ItemModel? item = await _context.Items.FindAsync(id);
+        if (item != null)
+        {
+            // TODO: Replace with JS Toast in footer to notify operation status instead of dedicated View
+            
+            return View(item);
+        }
+        else
+        {
+            return StatusCode(404, "Item not found");
+        }
+    }
+    
+    // Redirects from a request to "Delete" action IF it's a POST request
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        ItemModel? item = await _context.Items.FindAsync(id);
+        if (item != null)
+        {
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        else
+        {
+            return StatusCode(404, "Item not found");
+        }
+    }
 }
