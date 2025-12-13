@@ -2,6 +2,7 @@
 using ASPNETMVCFreeCodeCamp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ASPNETMVCFreeCodeCamp.Migrations
 {
     [DbContext(typeof(MVCAppContext))]
-    partial class MVCAppContextModelSnapshot : ModelSnapshot
+    [Migration("20251213075430_AddModel_SerialNumberModel")]
+    partial class AddModel_SerialNumberModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
