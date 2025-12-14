@@ -1,6 +1,8 @@
 ﻿using ASPNETMVCFreeCodeCamp.Data;
 using ASPNETMVCFreeCodeCamp.Models;
+using ASPNETMVCFreeCodeCamp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASPNETMVCFreeCodeCamp.Controllers;
@@ -16,18 +18,23 @@ public class ItemsController : Controller
 
     public async Task<IActionResult> Index()
     {
-        List<ItemModel> items = await _context.Items.Include(s => s.SerialNumber).ToListAsync();
+        List<ItemModel> items = await _context.Items
+            .Include(s => s.SerialNumber)
+            .Include(c => c.Category)
+            .ToListAsync();
         return View(items);
     }
     
     [HttpGet]
     public IActionResult Create()
     {
-        return View();
+        // ViewData["CategoryList"] = new SelectList(_context.Categories, "Id", "Name");
+        
+        return View(new CreateViewModel(new SelectList(_context.Categories, "Id", "Name")));
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create([Bind("Id, Name, Price")] ItemModel item)
+    public async Task<IActionResult> Create([Bind("Id, Name, Price, CategoryId")] ItemModel item)
     {
         if (ModelState.IsValid)
         {
@@ -35,7 +42,7 @@ public class ItemsController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(item);
+        return View(new CreateViewModel(new SelectList(_context.Categories, "Id", "Name")));
     }
     
     // GET

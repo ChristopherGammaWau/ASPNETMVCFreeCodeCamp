@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ASPNETMVCFreeCodeCamp.Models;
 
@@ -12,4 +13,8 @@ public class ItemModel
     
     public int? SerialNumberId { get; set; }
     public SerialNumberModel? SerialNumber { get; set; }
+    
+    public int? CategoryId { get; set; }
+    [ForeignKey(nameof(CategoryId))]
+    public CategoryModel? Category { get; set; }
 }
