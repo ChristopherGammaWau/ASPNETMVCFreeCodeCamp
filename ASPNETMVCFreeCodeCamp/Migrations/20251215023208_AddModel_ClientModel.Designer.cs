@@ -2,6 +2,7 @@
 using ASPNETMVCFreeCodeCamp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ASPNETMVCFreeCodeCamp.Migrations
 {
     [DbContext(typeof(MVCAppContext))]
-    partial class MVCAppContextModelSnapshot : ModelSnapshot
+    [Migration("20251215023208_AddModel_ClientModel")]
+    partial class AddModel_ClientModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,18 +69,6 @@ namespace ASPNETMVCFreeCodeCamp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Drunk n Co"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Shovelware Games"
-                        });
                 });
 
             modelBuilder.Entity("ASPNETMVCFreeCodeCamp.Models.ItemClientModel", b =>
@@ -93,23 +84,6 @@ namespace ASPNETMVCFreeCodeCamp.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("ItemClientModels");
-
-                    b.HasData(
-                        new
-                        {
-                            ClientId = 1,
-                            ItemId = 1
-                        },
-                        new
-                        {
-                            ClientId = 2,
-                            ItemId = 2
-                        },
-                        new
-                        {
-                            ClientId = 2,
-                            ItemId = 3
-                        });
                 });
 
             modelBuilder.Entity("ASPNETMVCFreeCodeCamp.Models.ItemModel", b =>
@@ -156,14 +130,6 @@ namespace ASPNETMVCFreeCodeCamp.Migrations
                             Name = "Item 2",
                             Price = 50.0,
                             SerialNumberId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 2,
-                            Name = "Item 3",
-                            Price = 150.0,
-                            SerialNumberId = 3
                         });
                 });
 
@@ -202,12 +168,6 @@ namespace ASPNETMVCFreeCodeCamp.Migrations
                             Id = 2,
                             ItemId = 2,
                             Name = "SN002"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ItemId = 3,
-                            Name = "SN003"
                         });
                 });
 

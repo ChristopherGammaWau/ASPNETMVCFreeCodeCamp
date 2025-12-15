@@ -21,6 +21,8 @@ public class ItemsController : Controller
         List<ItemModel> items = await _context.Items
             .Include(s => s.SerialNumber)
             .Include(c => c.Category)
+            .Include(ic => ic.ItemClientModels)
+            .ThenInclude(ic => ic.Client)
             .ToListAsync();
         return View(items);
     }

@@ -2,10 +2,12 @@
 
 namespace ASPNETMVCFreeCodeCamp.Models;
 
-public class CategoryModel
+public class ClientModel
 {
     public int Id { get; set; }
     [MaxLength(100)]
-    public string? Name { get; set; } = "";
-    public List<ItemModel>? Items { get; set; }
+    public required string Name { get; set; }
+    
+    public List<ItemClientModel>? ItemClientModels { get; set; }
+
 }
