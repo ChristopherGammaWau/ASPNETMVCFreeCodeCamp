@@ -30,7 +30,7 @@ public class ItemsController : Controller
     {
         // ViewData["CategoryList"] = new SelectList(_context.Categories, "Id", "Name");
         
-        return View(new CreateViewModel(new SelectList(_context.Categories, "Id", "Name")));
+        return View(new CreateEditViewModel(new SelectList(_context.Categories, "Id", "Name")));
     }
     
     [HttpPost]
@@ -42,7 +42,7 @@ public class ItemsController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(new CreateViewModel(new SelectList(_context.Categories, "Id", "Name")));
+        return View(new CreateEditViewModel(new SelectList(_context.Categories, "Id", "Name")));
     }
     
     // GET
@@ -60,7 +60,9 @@ public class ItemsController : Controller
         // Check is null
         if (item != null)
         {
-            return View(item);
+            CreateEditViewModel viewModel = new CreateEditViewModel(new SelectList(_context.Categories, "Id", "Name"));
+            viewModel.Item = item;
+            return View(viewModel);
         }
         else
         {
@@ -69,7 +71,7 @@ public class ItemsController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit([Bind("Id, Name, Price")] ItemModel item)
+    public async Task<IActionResult> Edit([Bind("Id, Name, Price, CategoryId")] ItemModel item)
     {
         if (ModelState.IsValid)
         {
@@ -77,7 +79,10 @@ public class ItemsController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(item);
+
+        CreateEditViewModel viewModel = new CreateEditViewModel(new SelectList(_context.Categories, "Id", "Name"));
+        viewModel.Item = item;
+        return View(viewModel);
     }
 
     [HttpGet]
